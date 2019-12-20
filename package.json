@@ -15,7 +15,10 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "html-pdf": "^2.2.0",
     "mongodb": "^3.4.0",
     "mongoose": "^5.8.1"
   },

@@ -63,11 +63,15 @@ export class Resume extends Component {
     switch (step) {
       case 1:
         return (
-          <Profile
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
+          <div className="App mt-3">
+            <div className="container col-lg-8 mx-auto text-center">
+              <Profile
+                nextStep={this.nextStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
+            </div>
+          </div>
         );
       case 2:
         return <h1>Education Details</h1>;
