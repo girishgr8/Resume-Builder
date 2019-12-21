@@ -1,18 +1,24 @@
-import React, {Component, Profiler} from 'react';
+import React, {Component} from 'react';
 import Profile from './Profile';
+import Education from './Education';
 
 export class Resume extends Component {
   state = {
     step: 1,
+    // Personal Profile Details...
     firstname: '',
     lastname: '',
     email: '',
-    birthdate: '',
+    phone: '',
     github: '',
     linkedin: '',
     facebook: '',
-    medium: '',
-    interests: '',
+    instagram: '',
+
+    // Education Details...
+    college: '',
+    fromyear: '',
+    toyear: '',
   };
 
   nextStep = () => {
@@ -42,29 +48,33 @@ export class Resume extends Component {
       firstname,
       lastname,
       email,
-      birthdate,
+      phone,
+      website,
       github,
       linkedin,
+      twitter,
       facebook,
-      medium,
+      instagram,
       interests,
     } = this.state;
     const values = {
       firstname,
       lastname,
       email,
-      birthdate,
+      phone,
+      website,
       github,
       linkedin,
+      twitter,
       facebook,
-      medium,
+      instagram,
       interests,
     };
     switch (step) {
       case 1:
         return (
           <div className="App mt-3">
-            <div className="container col-lg-8 mx-auto text-center">
+            <div className="container col-lg-10 mx-auto text-center">
               <Profile
                 nextStep={this.nextStep}
                 handleChange={this.handleChange}
@@ -74,7 +84,17 @@ export class Resume extends Component {
           </div>
         );
       case 2:
-        return <h1>Education Details</h1>;
+        return (
+          <div className="App mt-3">
+            <div className="container col-lg-10 mx-auto text-center">
+              <Education
+                nextStep={this.nextStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
+            </div>
+          </div>
+        );
       case 3:
         return <h1>Projects Details</h1>;
       case 4:
