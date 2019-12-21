@@ -1,12 +1,5 @@
-import 'date-fns';
 import React, {Component} from 'react';
 import {TextField, Button, Container, Divider} from '@material-ui/core';
-import DateFnsUtils from '@date-io/date-fns';
-// import {
-//   MuiPickersUtilsProvider,
-//   KeyboardTimePicker,
-//   KeyboardDatePicker,
-// } from '@material-ui/pickers';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
 import axios from 'axios';
 import {saveAs} from 'file-saver';
@@ -17,14 +10,9 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
-
-const [selectedDate, setSelectedDate] = React.useState (
-  new Date ('2014-08-18T21:11:54')
-);
-
-const handleDateChange = date => {
-  setSelectedDate (date);
-};
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {MuiPickersUtilsProvider, DatePicker} from '@material-ui/pickers';
 
 const styles = theme => ({
   margin: {
@@ -39,6 +27,11 @@ class Profile extends Component {
   continue = e => {
     e.preventDefault ();
     this.props.nextStep ();
+  };
+
+  back = e => {
+    e.preventDefault ();
+    this.props.prevStep ();
   };
 
   createAndDownloadPDF = () => {
@@ -60,22 +53,19 @@ class Profile extends Component {
       });
   };
 
-  handleChange = ({target: {value, name}}) => {
-    this.setState ({[name]: value});
-  };
-
   render () {
     const {values} = this.props;
     const {classes} = this.props;
+
     return (
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Education Information" />
+          <CardHeader title="Education Details" />
         </Card>
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
                   variant="outlined"
@@ -83,28 +73,31 @@ class Profile extends Component {
                   label="College/Unviersity"
                   style={{width: '80%'}}
                   required
-                  onChange={this.handleChange}
+                  value={values.college}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position="start">
                         <SchoolIcon />
                       </InputAdornment>
                     ),
                   }}
                 />
               </Grid>
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={6} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="From Year"
                   variant="outlined"
-                  style={{width: '80%'}}
                   name="fromyear1"
+                  label="From Year"
+                  type="date"
+                  style={{width: '80%'}}
                   required
-                  onChange={this.handleChange}
+                  value={values.fromyear1}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position="start">
                         <DateRangeIcon />
                       </InputAdornment>
                     ),
@@ -112,18 +105,20 @@ class Profile extends Component {
                 />
               </Grid>
 
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={6} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="To Year"
                   variant="outlined"
-                  style={{width: '80%'}}
                   name="toyear1"
+                  type="date"
+                  label="To Year"
+                  style={{width: '80%'}}
                   required
-                  onChange={this.handleChange}
+                  value={values.toyear1}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position="start">
                         <DateRangeIcon />
                       </InputAdornment>
                     ),
@@ -131,7 +126,7 @@ class Profile extends Component {
                 />
               </Grid>
 
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
                   label="Qualification"
@@ -139,11 +134,12 @@ class Profile extends Component {
                   style={{width: '80%'}}
                   name="qualification1"
                   required
-                  onChange={this.handleChange}
+                  value={values.qualification1}
+                  onChange={this.props.handleChange}
                 />
               </Grid>
 
-              <Grid item md={8} sm={8} xs={8} lg={8}>
+              <Grid item md={8} sm={12} xs={12} lg={8}>
                 <TextField
                   margin="dense"
                   label="Description"
@@ -151,7 +147,8 @@ class Profile extends Component {
                   style={{width: '90%'}}
                   name="description1"
                   required
-                  onChange={this.handleChange}
+                  value={values.description1}
+                  onChange={this.props.handleChange}
                 />
               </Grid>
             </Grid>
@@ -159,7 +156,7 @@ class Profile extends Component {
             <Divider />
             <br />
             <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
                   variant="outlined"
@@ -177,38 +174,20 @@ class Profile extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={6} xs={12} lg={4}>
                 <TextField
                   margin="dense"
-                  label="From Year"
                   variant="outlined"
-                  style={{width: '80%'}}
                   name="fromyear2"
-                  required
-                  onChange={this.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <DateRangeIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-
-              <Grid item md={4} sm={4} xs={4} lg={4}>
-                <TextField
-                  margin="dense"
-                  label="To Year"
-                  variant="outlined"
+                  label="From Year"
                   type="date"
                   style={{width: '80%'}}
-                  name="toyear2"
                   required
-                  onChange={this.handleChange}
+                  value={values.fromyear2}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">
+                      <InputAdornment position="start">
                         <DateRangeIcon />
                       </InputAdornment>
                     ),
@@ -216,7 +195,33 @@ class Profile extends Component {
                 />
               </Grid>
 
-              <Grid item md={4} sm={4} xs={4} lg={4}>
+              <Grid item md={4} sm={6} xs={12} lg={4}>
+                {/* <CustomDatePicker
+                  name={'toyear2'}
+                  label={'To Year'}
+                  value={values.toyear2}
+                /> */}
+                <TextField
+                  margin="dense"
+                  variant="outlined"
+                  name="toyear2"
+                  label="To Year"
+                  type="date"
+                  style={{width: '80%'}}
+                  required
+                  value={values.toyear2}
+                  onChange={this.props.handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <DateRangeIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+
+              <Grid item md={4} sm={12} xs={12} lg={4}>
                 <TextField
                   margin="dense"
                   label="Qualification"
@@ -224,7 +229,8 @@ class Profile extends Component {
                   style={{width: '80%'}}
                   name="qualification2"
                   required
-                  onChange={this.handleChange}
+                  value={values.qualification2}
+                  onChange={this.props.handleChange}
                 />
               </Grid>
 
@@ -236,7 +242,8 @@ class Profile extends Component {
                   style={{width: '90%'}}
                   name="description2"
                   required
-                  onChange={this.handleChange}
+                  value={values.description2}
+                  onChange={this.props.handleChange}
                 />
               </Grid>
             </Grid>
@@ -249,7 +256,7 @@ class Profile extends Component {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={this.nextStep}
+                onClick={this.back}
                 startIcon={<NavigateBeforeIcon />}
               >
                 Back

@@ -20,7 +20,7 @@ import {Paper, withStyles, Grid} from '@material-ui/core';
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit * 1.5,
+    margin: theme.spacing.unit * 1,
   },
   padding: {
     padding: theme.spacing.unit,
@@ -33,8 +33,23 @@ class Profile extends Component {
     this.props.nextStep ();
   };
 
-  handleChange = ({target: {value, name}}) => {
-    this.setState ({[name]: value});
+  createAndDownloadPDF = () => {
+    axios
+      .post ('/create-pdf', this.state)
+      .then (() => {
+        axios
+          .get ('fetch-pdf', {responseType: 'blob'})
+          .then (res => {
+            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
+            saveAs (pdfBlob, 'Resume.pdf');
+          })
+          .catch (err => {
+            console.log (err);
+          });
+      })
+      .catch (err => {
+        console.log (err);
+      });
   };
 
   render () {
@@ -43,12 +58,12 @@ class Profile extends Component {
     return (
       <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Personal Information" />
+          <CardHeader title="Personal Details" />
         </Card>
         <CardContent>
           <div className={classes.margin}>
             <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={6} sm={6} xs={6} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   variant="outlined"
@@ -56,10 +71,11 @@ class Profile extends Component {
                   label="First Name"
                   style={{width: '80%'}}
                   required
-                  onChange={this.handleChange}
+                  value={values.firstname}
+                  onChange={this.props.handleChange}
                 />
               </Grid>
-              <Grid item md={6} sm={6} xs={6} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Last Name"
@@ -67,11 +83,12 @@ class Profile extends Component {
                   style={{width: '80%'}}
                   name="lastname"
                   required
-                  onChange={this.handleChange}
+                  value={values.lastname}
+                  onChange={this.props.handleChange}
                 />
               </Grid>
 
-              <Grid item md={6} sm={6} xs={6} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Email"
@@ -79,7 +96,8 @@ class Profile extends Component {
                   name="email"
                   required
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.email}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -90,14 +108,15 @@ class Profile extends Component {
                 />
               </Grid>
 
-              <Grid item lg={6} md={6}>
+              <Grid item lg={6} xs={12} sm={12} md={6}>
                 <TextField
                   margin="dense"
                   label="Phone Number"
                   variant="outlined"
                   name="phone"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.phone}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -108,14 +127,15 @@ class Profile extends Component {
                 />
               </Grid>
 
-              <Grid item md={true} sm={true} xs={5} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Your Website"
                   variant="outlined"
                   name="website"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.website}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -125,14 +145,15 @@ class Profile extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={true} sm={true} xs={5} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="GitHub"
                   variant="outlined"
                   name="github"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.github}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -142,14 +163,15 @@ class Profile extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={true} sm={true} xs={5} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Linked In"
                   variant="outlined"
                   name="linkedin"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.linkedin}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -159,14 +181,15 @@ class Profile extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={true} sm={true} xs={5} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Twitter"
                   variant="outlined"
                   name="twitter"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.twitter}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -176,14 +199,15 @@ class Profile extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={true} sm={true} xs={5} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Facebook"
                   variant="outlined"
                   name="facebook"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.facebook}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -193,14 +217,15 @@ class Profile extends Component {
                   }}
                 />
               </Grid>
-              <Grid item md={true} sm={true} xs={5} lg={6}>
+              <Grid item md={6} sm={12} xs={12} lg={6}>
                 <TextField
                   margin="dense"
                   label="Instagram"
                   variant="outlined"
                   name="instagram"
                   style={{alignItems: 'left', width: '80%'}}
-                  onChange={this.handleChange}
+                  value={values.instagram}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -213,8 +238,8 @@ class Profile extends Component {
             </Grid>
             <Container className={classes.margin}>
               <Row>
-                <Col xs={4} />
-                <Col xs={2}>
+                <Col lg={3} xs={0} />
+                <Col lg={3} xs={5}>
                   <Button
                     variant="contained"
                     color="secondary"
@@ -225,7 +250,7 @@ class Profile extends Component {
                     Back
                   </Button>
                 </Col>
-                <Col xs={2}>
+                <Col lg={3} xs={5}>
                   <Button
                     variant="contained"
                     color="secondary"
@@ -235,7 +260,7 @@ class Profile extends Component {
                     Next
                   </Button>
                 </Col>
-                <Col xs={4} />
+                <Col lg={3} xs={1} />
               </Row>
             </Container>
             <Button

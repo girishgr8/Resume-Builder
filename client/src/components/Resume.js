@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Profile from './Profile';
 import Education from './Education';
+import Projects from './Projects';
+import Experience from './Experience';
+import Extras from './Extras';
 
 export class Resume extends Component {
   state = {
@@ -15,10 +18,38 @@ export class Resume extends Component {
     facebook: '',
     instagram: '',
 
-    // Education Details...
+    // Education Information
     college: '',
-    fromyear: '',
-    toyear: '',
+    fromyear1: '',
+    toyear1: '',
+    qualification1: '',
+    description1: '',
+    school: '',
+    fromyear2: '',
+    toyear2: '',
+    qualification2: '',
+    description2: '',
+
+    // Project Information...
+    title1: '',
+    link1: '',
+    projectDescription1: '',
+    title2: '',
+    link2: '',
+    projectDescription2: '',
+    title3: '',
+    link3: '',
+    projectDescription3: '',
+
+    // Experience Information
+    institute1: '',
+    position1: '',
+    duration1: '',
+    experienceDescription1: '',
+    institute2: '',
+    position2: '',
+    duration2: '',
+    experienceDescription2: '',
   };
 
   nextStep = () => {
@@ -36,15 +67,19 @@ export class Resume extends Component {
   };
 
   // Handling fields change....
-  handleChange = input => e => {
-    this.setState ({
-      [input]: e.target.value,
-    });
+  // handleChange = input => e => {
+  //   this.setState ({
+  //     [input]: e.target.value,
+  //   });
+  // };
+  handleChange = ({target: {value, name}}) => {
+    this.setState ({[name]: value});
   };
 
   render () {
     const {step} = this.state;
     const {
+      // Profile-Information
       firstname,
       lastname,
       email,
@@ -55,9 +90,42 @@ export class Resume extends Component {
       twitter,
       facebook,
       instagram,
-      interests,
+
+      // Education Information
+      college,
+      fromyear1,
+      toyear1,
+      qualification1,
+      description1,
+      school,
+      fromyear2,
+      toyear2,
+      qualification2,
+      description2,
+
+      // Project Information...
+      title1,
+      link1,
+      projectDescription1,
+      title2,
+      link2,
+      projectDescription2,
+      title3,
+      link3,
+      projectDescription3,
+
+      // Experience Information
+      institute1,
+      position1,
+      duration1,
+      experienceDescription1,
+      institute2,
+      position2,
+      duration2,
+      experienceDescription2,
     } = this.state;
     const values = {
+      // Profile-Information
       firstname,
       lastname,
       email,
@@ -68,7 +136,39 @@ export class Resume extends Component {
       twitter,
       facebook,
       instagram,
-      interests,
+
+      // Education Information
+      college,
+      fromyear1,
+      toyear1,
+      qualification1,
+      description1,
+      school,
+      fromyear2,
+      toyear2,
+      qualification2,
+      description2,
+
+      // Project Information...
+      title1,
+      link1,
+      projectDescription1,
+      title2,
+      link2,
+      projectDescription2,
+      title3,
+      link3,
+      projectDescription3,
+
+      // Experience Information
+      institute1,
+      position1,
+      duration1,
+      experienceDescription1,
+      institute2,
+      position2,
+      duration2,
+      experienceDescription2,
     };
     switch (step) {
       case 1:
@@ -89,6 +189,7 @@ export class Resume extends Component {
             <div className="container col-lg-10 mx-auto text-center">
               <Education
                 nextStep={this.nextStep}
+                prevStep={this.prevStep}
                 handleChange={this.handleChange}
                 values={values}
               />
@@ -96,9 +197,31 @@ export class Resume extends Component {
           </div>
         );
       case 3:
-        return <h1>Projects Details</h1>;
+        return (
+          <div className="App mt-3">
+            <div className="container col-lg-8 mx-auto text-center">
+              <Projects
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
+            </div>
+          </div>
+        );
       case 4:
-        return <h1>Experience Details</h1>;
+        return (
+          <div className="App mt-3">
+            <div className="container col-lg-10 mx-auto text-center">
+              <Experience
+                nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
+            </div>
+          </div>
+        );
     }
   }
 }
