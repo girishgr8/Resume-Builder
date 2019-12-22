@@ -40,7 +40,7 @@ class Experience extends Component {
 
   createAndDownloadPDF = () => {
     axios
-      .post ('/create-pdf', this.state)
+      .post ('/create-pdf', this.props.values)
       .then (() => {
         axios
           .get ('fetch-pdf', {responseType: 'blob'})

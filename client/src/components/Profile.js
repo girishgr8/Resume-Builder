@@ -33,24 +33,24 @@ class Profile extends Component {
     this.props.nextStep ();
   };
 
-  createAndDownloadPDF = () => {
-    axios
-      .post ('/create-pdf', this.state)
-      .then (() => {
-        axios
-          .get ('fetch-pdf', {responseType: 'blob'})
-          .then (res => {
-            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
-            saveAs (pdfBlob, 'Resume.pdf');
-          })
-          .catch (err => {
-            console.log (err);
-          });
-      })
-      .catch (err => {
-        console.log (err);
-      });
-  };
+  // createAndDownloadPDF = () => {
+  //   axios
+  //     .post ('/create-pdf', this.props.values)
+  //     .then (() => {
+  //       axios
+  //         .get ('fetch-pdf', {responseType: 'blob'})
+  //         .then (res => {
+  //           const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
+  //           saveAs (pdfBlob, 'Resume.pdf');
+  //         })
+  //         .catch (err => {
+  //           console.log (err);
+  //         });
+  //     })
+  //     .catch (err => {
+  //       console.log (err);
+  //     });
+  // };
 
   render () {
     const {values} = this.props;
@@ -263,14 +263,14 @@ class Profile extends Component {
                 <Col lg={3} xs={1} />
               </Row>
             </Container>
-            <Button
+            {/* <Button
               variant="contained"
               color="secondary"
               onClick={this.createAndDownloadPDF}
               endIcon={<GetAppIcon />}
             >
               Generate PDF
-            </Button>
+            </Button> */}
           </div>
         </CardContent>
         <p className="text-center text-muted">Page 1 </p>
