@@ -1,7 +1,7 @@
-# MERN Stack Application
+# Resume Builder Application
 
-1. **React** for Frontend and **Express** for Backend.
-2. **MongoDB Atlas** for easy deployment purpose.
+1. **React** for Frontend and **Express** as Middleware.
+2. **Material UI** and **React-Bootstrap** for styling.
 
 ## Quick Start
 
