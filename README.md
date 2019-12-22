@@ -4,6 +4,7 @@
 2. **Material UI** and **React-Bootstrap** for styling.
 
 ## Quick Start
+Clone the repository and do following:
 
 ```bash
 # Install dependencies for server
@@ -23,3 +24,6 @@ npm run client
 
 # Server runs on http://localhost:4000 and client on http://localhost:3000
 ```
+
+## Demo :
+![Demo](https://github.com/girishgr8/Resume-Builder/blob/master/demo/demo.gif)
