@@ -13,7 +13,6 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';

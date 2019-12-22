@@ -34,25 +34,6 @@ class Profile extends Component {
     this.props.prevStep ();
   };
 
-  createAndDownloadPDF = () => {
-    axios
-      .post ('/create-pdf', this.state)
-      .then (() => {
-        axios
-          .get ('fetch-pdf', {responseType: 'blob'})
-          .then (res => {
-            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
-            saveAs (pdfBlob, 'Resume.pdf');
-          })
-          .catch (err => {
-            console.log (err);
-          });
-      })
-      .catch (err => {
-        console.log (err);
-      });
-  };
-
   render () {
     const {values} = this.props;
     const {classes} = this.props;
@@ -164,7 +145,8 @@ class Profile extends Component {
                   label="School"
                   style={{width: '80%'}}
                   required
-                  onChange={this.handleChange}
+                  value={values.school}
+                  onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">

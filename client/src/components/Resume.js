@@ -50,6 +50,20 @@ export class Resume extends Component {
     position2: '',
     duration2: '',
     experienceDescription2: '',
+
+    // Extra Information
+    skill1: '',
+    skill2: '',
+    skill3: '',
+    skill4: '',
+    skill5: '',
+    skill6: '',
+    interest1: '',
+    interest2: '',
+    interest3: '',
+    interest4: '',
+    interest5: '',
+    interest6: '',
   };
 
   nextStep = () => {
@@ -66,12 +80,6 @@ export class Resume extends Component {
     });
   };
 
-  // Handling fields change....
-  // handleChange = input => e => {
-  //   this.setState ({
-  //     [input]: e.target.value,
-  //   });
-  // };
   handleChange = ({target: {value, name}}) => {
     this.setState ({[name]: value});
   };
@@ -123,6 +131,20 @@ export class Resume extends Component {
       position2,
       duration2,
       experienceDescription2,
+
+      // Extra Information
+      skill1,
+      skill2,
+      skill3,
+      skill4,
+      skill5,
+      skill6,
+      interest1,
+      interest2,
+      interest3,
+      interest4,
+      interest5,
+      interest6,
     } = this.state;
     const values = {
       // Profile-Information
@@ -169,6 +191,20 @@ export class Resume extends Component {
       position2,
       duration2,
       experienceDescription2,
+
+      // Extra Information
+      skill1,
+      skill2,
+      skill3,
+      skill4,
+      skill5,
+      skill6,
+      interest1,
+      interest2,
+      interest3,
+      interest4,
+      interest5,
+      interest6,
     };
     switch (step) {
       case 1:
@@ -215,6 +251,18 @@ export class Resume extends Component {
             <div className="container col-lg-10 mx-auto text-center">
               <Experience
                 nextStep={this.nextStep}
+                prevStep={this.prevStep}
+                handleChange={this.handleChange}
+                values={values}
+              />
+            </div>
+          </div>
+        );
+      case 5:
+        return (
+          <div className="App mt-3">
+            <div className="container col-lg-10 mx-auto text-center">
+              <Extras
                 prevStep={this.prevStep}
                 handleChange={this.handleChange}
                 values={values}

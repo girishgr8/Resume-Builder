@@ -1,347 +1,423 @@
-module.exports = ({firstname, lastname, email}) => {
-  const today = new Date ();
-  return `
+module.exports = values => {
+  const {
+    // Profile-Information
+    firstname,
+    lastname,
+    email,
+    phone,
+    website,
+    github,
+    linkedin,
+    twitter,
+    facebook,
+    instagram,
+
+    // Education Information
+    college,
+    fromyear1,
+    toyear1,
+    qualification1,
+    description1,
+    school,
+    fromyear2,
+    toyear2,
+    qualification2,
+    description2,
+
+    // Project Information...
+    title1,
+    link1,
+    projectDescription1,
+    title2,
+    link2,
+    projectDescription2,
+    title3,
+    link3,
+    projectDescription3,
+
+    // Experience Information
+    institute1,
+    position1,
+    duration1,
+    experienceDescription1,
+    institute2,
+    position2,
+    duration2,
+    experienceDescription2,
+
+    // Extra Information
+    skill1,
+    skill2,
+    skill3,
+    skill4,
+    skill5,
+    skill6,
+    interest1,
+    interest2,
+    interest3,
+    interest4,
+    interest5,
+    interest6,
+  } = values;
+  let htmlTemplate = `
   <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Andre's Resume</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <style>
-  html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-  body {
-    font-family: 'Roboto Slab', serif;
-    line-height: 1.5;
-    background: #F2F2F2;
-    color: #323232;
-  }
-  
-  img {
-    max-width: 100%;
-  }
-  
-  .icon {
-    fill: currentColor;
-    display: inline-block;
-    font-size: inherit;
-    height: 1em;
-    overflow: visible;
-  }
-  
-  a {
-    color: #323232;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .container {
-    max-width: 960px;
-    margin: 40px auto;
-    padding: 32px;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  section {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid lightgrey;
-  }
-  
-  section:last-child {
-    border-bottom: none;
-  }
-  
-  .section-title {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  Main Info
+    <html>
+    <head>
+    <title>${firstname}'s Resume</title>
+	<meta charset="UTF-8"> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,500,600&display=swap" rel="stylesheet">
+	<style>
+	* {
+		box-sizing: border-box;
+		transition: 0.35s ease;
+		font-style: normal;
+	  }
+	  .rela-block {
+		width: 100%;
+		display: block;
+		position: relative;
+		margin: auto;
+		top: ;
+		left: ;
+		right: ;
+		bottom: ;
+		font-style: normal;
+	  }
+	  .rela-inline {
+		display: inline-block;
+		position: relative;
+		margin: auto;
+		top: ;
+		left: ;
+		right: ;
+		bottom: ;
+		font-style: normal;
+	  }
+	  .floated {
+		display: inline-block;
+		position: relative;
+		margin: false;
+		top: ;
+		left: ;
+		right: ;
+		bottom: ;
+		float: left;
+	  }
+	  .abs-center {
+		display: false;
+		position: absolute;
+		margin: false;
+		top: 50%;
+		left: 50%;
+		right: false;
+		bottom: false;
+		-webkit-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+		text-align: center;
+		width: 88%;
+		font-style: normal;
+	  }
+	  body {
+		font-family: 'Roboto Slab';
+		font-size: 18px;
+		letter-spacing: 0px;
+		font-weight: 400;
+		line-height: 28px;
+		background-size: cover;
+		font-style: normal;
+	  }
+	  
+	  .caps {
+		text-transform: uppercase;
+	  }
+	  .justified {
+		text-align: justify;
+	  }
+	  p.light {
+		color: #777;
+		font-size: 14px;
+		font-style: normal;
+	  }
+	  h2 {
+		font-family: 'Roboto Slab', serif;
+		font-size: 30px;
+		letter-spacing: 5px;
+		font-weight: 600;
+		line-height: 40px;
+		color: #000;
+		font-style: normal;
+	  }
+	  h3 {
+		font-family: 'Roboto Slab', serif;
+		font-size: 21px;
+		letter-spacing: 1px;
+		font-weight: 600;
+		line-height: 28px;
+		color: #000;
+	  }
+	  .page {
+		width: 90%;
+		max-width: 1200px;
+		margin: 80px auto;
+		background-color: #fff;
+		box-shadow: 6px 10px 28px 0px rgba(0,0,0,0.4);
+	  }
+	  .top-bar {
+		height: 220px;
+		background-color: #848484;
+		color: #fff;
+	  }
+	  .name {
+		display: false;
+		position: absolute;
+		margin: false;
+		top: false;
+		left: calc(350px + 5%);
+		right: 0;
+		bottom: 0;
+		height: 120px;
+		text-align: center;
+		font-family: 'Roboto Slab';
+		font-size: 58px;
+		letter-spacing: 8px;
+		font-weight: 100;
+		line-height: 60px;
+		font-style: normal;
+	  }
+	  .name div {
+		width: 94%;
+	  }
+	  .side-bar {
+		display: false;
+		position: absolute;
+		margin: false;
+		top: 60px;
+		left: 2%;
+		right: false;
+		bottom: 0;
+		width: 380px;
+		background-color: #f7e0c1;
+		padding: 320px 30px 50px;
+	  }
+	  .mugshot {
+		display: false;
+		position: absolute;
+		margin: false;
+		top: 50px;
+		left: 70px;
+		right: false;
+		bottom: false;
+		height: 210px;
+		width: 210px;
+	  }
+	  .mugshot .logo {
+		margin: -23px;
+	  }
+	  .logo {
+		display: false;
+		position: absolute;
+		margin: false;
+		top: 0;
+		left: 0;
+		right: false;
+		bottom: false;
+		z-index: 100;
+		margin: 0;
+		color: #000;
+		height: 250px;
+		width: 250px;
+	  }
+	  .logo .logo-svg {
+		height: 100%;
+		width: 100%;
+		stroke: #000;
+		cursor: pointer;
+	  }
+	  .logo .logo-text {
+		display: false;
+		position: absolute;
+		margin: false;
+		top: 60%;
+		left: ;
+		right: 20%;
+		bottom: ;
+		cursor: pointer;
+		font-family: 'Roboto Slab', serif;
+		font-size: 60px;
+		letter-spacing: 0px;
+		font-weight: 400;
+		line-height: 58.333333333333336px;
+		font-style: normal;
+	  }
+	  .social {
+		padding-left: 10px;
+		margin-bottom: 0px;
+		cursor: pointer;
+	  }
+	  
+	  .side-header {
+		font-family: 'Roboto Slab', serif;
+		font-size: 18px;
+		letter-spacing: 4px;
+		font-weight: 600;
+		line-height: 28px;
+		margin: 60px auto 10px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #888;
+	  }
+	  .list-thing {
+		padding-left: 20px;
+		margin-bottom: 5px;
+	  }
+	  .content-container {
+		margin-right: 0;
+		width: calc(95% - 350px);
+		padding: 25px 40px 50px;
+	  }
+	  .content-container > * {
+		margin: 0 auto 25px;
+	  }
+	  .content-container > h3 {
+		margin: 0 auto 5px;
+	  }
+	  .content-container > p.long-margin {
+		margin: 0 auto 50px;
+	  }
+	  .title {
+		width: 80%;
+		text-align: center;
+	  }
+	  .separator {
+		width: 300px;
+		height: 2px;
+		background-color: #999;
+	  }
+	  .greyed {
+		background-color: #ddd;
+		width: 100%;
+		max-width: 580px;
+		text-align: center;
+		font-family: 'Roboto Slab';
+		font-size: 18px;
+		letter-spacing: 6px;
+		font-weight: 600;
+		line-height: 28px;
+	  }
+	  @media screen and (max-width: 1150px) {
+		.name {
+		  color: #fff;
+		  font-family: 'Roboto Slab';
+		  font-size: 38px;
+		  letter-spacing: 6px;
+		  font-weight: 100;
+		  line-height: 48px;
+		}
+	  }	  
+	</style>
+    </head>
+	<body>
+	<script src="https://kit.fontawesome.com/08e4ab6b32.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <div class="rela-block page">
+        <div class="rela-block top-bar">
+			<div class="caps name"><div class="abs-center">${firstname} ${lastname}</div></div>
+        </div>
+        <div class="side-bar">
+            <div class="mugshot">
+                <div class="logo">
+                    <svg viewbox="0 0 80 80" class="rela-block logo-svg">
+                        <path d="M 10 10 L 52 10 L 72 30 L 72 70 L 30 70 L 10 50 Z" stroke-width="2.5" fill="none"/>
+                    </svg>
+                    <p class="logo-text">GT</p>
+                </div>
+			</div>
+			<!--
+            <p class="mb-1">123 My Place Drive</p>
+            <p class="mb-1">Astoria, New York 11105</p>
+			<p class="mb-1">1-800-CALLPLZ</p>
+			-->
+			<p class="mb-1"><span style="padding-right:10px;"><i class="fas fa-envelope"></i></span>${email}</p>
+			<p class="mb-1"><span style="padding-right:10px;"><i class="fas fa-phone-square-alt"></i></span>${phone}</p>
+			`;
+  if (skill1 != '' || skill1 != null)
+    htmlTemplate += `<p class="rela-block caps side-header">Skills</p>
+				<p class="rela-block list-thing">${skill1}</p>`;
+  if (skill2 != '' || skill2 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${skill2}</p>`;
+  if (skill3 != '' || skill3 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${skill3}</p>`;
+  if (skill4 != '' || skill4 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${skill4}</p>`;
+  if (skill5 != '' || skill5 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${skill5}</p>`;
+  if (skill6 != '' || skill6 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${skill6}</p>`;
 
-  img.avatar {
-    width: 130px;
-  }
-  
-  .my-name {
-    font-size: 48px;
-    line-height: 1;
-  }
-  
-  .my-title {
-    font-size: 24px;
-    font-weight: 300;
-    color: #236FB2;
-  }
-  
-  .links {
-    display: flex;
-    margin: 10px 0 20px 0;
-  }
-  
-  .link-item {
-    display: flex;
-    align-items: center;
-    flex: 1;
-  }
-  
-  .link-item svg {
-    margin-right: 6px;
-  }
-  
-  /***********************************
-  * =Experience
-  ***********************************/
-  
-  .job {
-    padding-bottom: 24px;
-    margin-bottom: 24px;
-    border-bottom: 1px solid lightgrey;
-  }
-  
-  .job:last-child {
-    border-bottom: none;
-  }
-  
-  .job-title-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-size: 18px;
-  }
-  
-  .job-company {
-    font-weight: bold;
-    line-height: 1.2;
-  }
-  
-  /***********************************
-  * =Skills
-  ***********************************/
-  
-  .skills-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
-    margin-bottom: 24px;
-  }
-  
-  .skills-container ul {
-    margin-left: 20px;
-    list-style-type: disc;
-  }
-  
-  /***********************************
-  * =Interests
-  ***********************************/
-  
-  .interests-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .interests-container img {
-    height: 35px;
-    opacity: 0.75;
-  }
-  
-  /***********************************
-  * =References
-  ***********************************/
-  
-  .reference {
-    font-size: 18px;
-  }
-  
-  .reference-details {
-    margin-bottom: 20px;
-  }
-  
-  @media only screen and (max-width : 768px) {
-    section {
-      grid-template-columns: 1fr;
-    }
-  
-    .links, .job-title-container {
-      flex-direction: column;
-    }
-  
-    .skills-container {
-      grid-template-columns: 1fr 1fr;
-    }
-  
-    .interests-container {
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-  
-    .interests-container img {
-      margin-right: 32px;
-      margin-bottom: 16px;
-    }
-  }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <section>
-      <div>
-        <div><img src="img/dre.jpg" alt="avatar" class="avatar"></div>
-      </div>
-      <div>
-        <div class="my-name">${firstname} ${lastname}</div>
-        <div class="my-title">${email}</div>
-        <div class="links">
-          <div class="link-item">
-            <svg class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"/></svg>
-            <a href="http://google.ca">andremadarang.com</a>
-          </div>
-          <div class="link-item">
-            <svg class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1664 1504v-768q-32 36-69 66-268 206-426 338-51 43-83 67t-86.5 48.5-102.5 24.5h-2q-48 0-102.5-24.5t-86.5-48.5-83-67q-158-132-426-338-37-30-69-66v768q0 13 9.5 22.5t22.5 9.5h1472q13 0 22.5-9.5t9.5-22.5zm0-1051v-24.5l-.5-13-3-12.5-5.5-9-9-7.5-14-2.5h-1472q-13 0-22.5 9.5t-9.5 22.5q0 168 147 284 193 152 401 317 6 5 35 29.5t46 37.5 44.5 31.5 50.5 27.5 43 9h2q20 0 43-9t50.5-27.5 44.5-31.5 46-37.5 35-29.5q208-165 401-317 54-43 100.5-115.5t46.5-131.5zm128-37v1088q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1472q66 0 113 47t47 113z"/></svg>
-            <a href="mailto:email@email.com">email@email.com</a>
-          </div>
-          <div class="link-item">
-            <svg  class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1600 1240q0 27-10 70.5t-21 68.5q-21 50-122 106-94 51-186 51-27 0-53-3.5t-57.5-12.5-47-14.5-55.5-20.5-49-18q-98-35-175-83-127-79-264-216t-216-264q-48-77-83-175-3-9-18-49t-20.5-55.5-14.5-47-12.5-57.5-3.5-53q0-92 51-186 56-101 106-122 25-11 68.5-21t70.5-10q14 0 21 3 18 6 53 76 11 19 30 54t35 63.5 31 53.5q3 4 17.5 25t21.5 35.5 7 28.5q0 20-28.5 50t-62 55-62 53-28.5 46q0 9 5 22.5t8.5 20.5 14 24 11.5 19q76 137 174 235t235 174q2 1 19 11.5t24 14 20.5 8.5 22.5 5q18 0 46-28.5t53-62 55-62 50-28.5q14 0 28.5 7t35.5 21.5 25 17.5q25 15 53.5 31t63.5 35 54 30q70 35 76 53 3 7 3 21z"/></svg>
-            <a href="tel:123-456-7890">123-456-7890</a>
-          </div>
-        </div> <!-- end links -->
+  if (interest1 != '' || interest1 != null)
+    htmlTemplate += `<p class="rela-block caps side-header">Interests</p>
+				<p class="rela-block list-thing">${interest1}</p>`;
+  if (interest2 != '' || interest2 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${interest2}</p>`;
+  if (interest3 != '' || interest3 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${interest3}</p>`;
+  if (interest4 != '' || interest4 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${interest4}</p>`;
+  if (interest6 != '' || interest6 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${interest5}</p>`;
+  if (interest6 != '' || interest6 != null)
+    htmlTemplate += `<p class="rela-block list-thing">${interest6}</p>`;
 
-        <p>Netlify Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores explicabo nam similique quaerat, porro perferendis adipisci molestias eius dolore eaque, consequatur placeat voluptates consequuntur! Quis quia incidunt aut, repellat aspernatur placeat praesentium vel enim eaque, aperiam, in corrupti tenetur.</p>
-      </div>
-    </section>
+  htmlTemplate += `
+  			</div>
+			<div class="rela-block content-container">
+			<!--
+			<h2 class="rela-block caps title">Jr Front-End Developer</h2>
+			<div class="rela-block separator"></div>
+			-->
+			<div class="rela-block caps greyed">Profile</div>
+			<p class="rela-block social mb-0"><span style="padding-right: 15px; font-size="20px;"><i class="fas fa-globe"></i></span>${website}</p>
+			<p class="rela-block social mb-0"><span style="padding-right: 15px; font-size="20px;"><i class="fab fa-github"></i></span>${github}</p>
+			<p class="rela-block social mb-0"><span style="padding-right: 15px; font-size="20px;"><i class="fab fa-facebook"></i></span>${facebook}</p>
+			<p class="rela-block social mb-0"><span style="padding-right: 15px; font-size="20px;"><i class="fab fa-twitter-square"></i></span>${twitter}</p>
+			<p class="rela-block social mb-0"><span style="padding-right: 15px; font-size="20px;"><i class="fab fa-instagram"></i></span>${instagram}</p>
+			<p class="rela-block social mb-4"><span style="padding-right: 15px; font-size="20px;"><i class="fab fa-linkedin"></i></span>${linkedin}</p>			
+			
+			
+			<div class="rela-block caps greyed">Education</div>
+            <h3 class="mb-0">${college}</h3>
+			<p class="text-muted light mt-0 mb-1">${fromyear1}<span class="mx-2">to</span>${toyear1}</p>
+			<p class="justified mt-0 mb-1" style="font-size: 17px;">${qualification1}</p>
+			<p class="justified mt-0 mb-3" style="font-size: 17px;">${description1}</p>
+        
+            <h3 class="mb-0">${school}</h3>
+			<p class="text-muted light mt-0 mb-1">${fromyear2}<span class="mx-2">to</span>${toyear2}</p>
+			<p class="justified mt-0 mb-1" style="font-size: 17px;">${qualification2}</p>
+			<p class="justified mt-0 mb-1" style="font-size: 17px;">${description2}</p>
 
-    <section>
-      <div class="section-title">Experience</div>
-      <div>
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Facebook</div>
-              <div class="job-title">Back-End Web Developer</div>
-            </div>
-            <div>
-              Jan 2013 - Jan 2014
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum voluptate iure quasi inventore doloremque exercitationem maiores libero corrupti magnam praesentium voluptatem facere optio recusandae sit debitis tenetur beatae, voluptatibus itaque magni, est. Fugiat nostrum nemo fuga nulla modi doloremque maxime.</p>
-        </div> <!-- end job -->
+            <div class="rela-block caps greyed">Experience</div>
+            <h3>${institute1}</h3>
+            <p class="text-muted light mt-1 mb-2" style="font-size:17px;">${position1}<span class="ml-5 pl-5">Duration: ${duration1}</span></p>
+            <p class="justified" style="font-size:17px;">${experienceDescription1}</p>
+            <h3>${institute2}</h3>
+            <p class="text-muted light mt-1 mb-2" style="font-size:17px;">${position2}<span class="ml-5 pl-5">Duration: ${duration2}</span></p>
+            <p class="justified" style="font-size:17px;">${experienceDescription2}</p>
 
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Facebook</div>
-              <div class="job-title">Back-End Web Developer</div>
-            </div>
-            <div>
-              Jan 2013 - Jan 2014
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum voluptate iure quasi inventore doloremque exercitationem maiores libero corrupti magnam praesentium voluptatem facere optio recusandae sit debitis tenetur beatae, voluptatibus itaque magni, est. Fugiat nostrum nemo fuga nulla modi doloremque maxime.</p>
-        </div> <!-- end job -->
-
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Facebook</div>
-              <div class="job-title">Back-End Web Developer</div>
-            </div>
-            <div>
-              Jan 2013 - Jan 2014
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum voluptate iure quasi inventore doloremque exercitationem maiores libero corrupti magnam praesentium voluptatem facere optio recusandae sit debitis tenetur beatae, voluptatibus itaque magni, est. Fugiat nostrum nemo fuga nulla modi doloremque maxime.</p>
-        </div> <!-- end job -->
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">Education</div>
-      <div>
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">University of School</div>
-              <div class="job-title">Bachelors of Science in Some Field</div>
-            </div>
-            <div>
-              Jan 2013 - Jan 2014
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium blanditiis architecto, ipsum excepturi ducimus asperiores, eius necessitatibus porro harum? Reiciendis, vel. Voluptates dolorum soluta minima iste iusto, quae aliquam magni, dolores labore, placeat reiciendis! Corrupti, in, ullam! Repudiandae, quibusdam aliquid!</p>
-        </div> <!-- end job -->
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">Skills</div>
-      <div>
-        <div class="skills-container">
-          <ul>
-            <li>Skill One</li>
-            <li>Skill Two</li>
-            <li>Skill Three</li>
-            <li>Skill Four</li>
-          </ul>
-
-          <ul>
-            <li>Skill One</li>
-            <li>Skill Two</li>
-            <li>Skill Three</li>
-            <li>Skill Four</li>
-          </ul>
-
-          <ul>
-            <li>Skill One</li>
-            <li>Skill Two</li>
-            <li>Skill Three</li>
-            <li>Skill Four</li>
-          </ul>
-        </div> <!-- end skills-container -->
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, obcaecati aut quas et voluptatibus dolorem similique, voluptate, totam, corrupti placeat molestiae distinctio consectetur. Et dolorum, eos, expedita debitis sed explicabo.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="section-title">References</div>
-      <div>
-        <div class="job-company">Some Guy, CEO</div>
-        <div class="job-title">Some Company Inc.</div>
-        <div class="links">
-          <div class="link-item">
-            <svg class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"/></svg>
-            <a href="http://google.ca">andremadarang.com</a>
-          </div>
-          <div class="link-item">
-            <svg class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1664 1504v-768q-32 36-69 66-268 206-426 338-51 43-83 67t-86.5 48.5-102.5 24.5h-2q-48 0-102.5-24.5t-86.5-48.5-83-67q-158-132-426-338-37-30-69-66v768q0 13 9.5 22.5t22.5 9.5h1472q13 0 22.5-9.5t9.5-22.5zm0-1051v-24.5l-.5-13-3-12.5-5.5-9-9-7.5-14-2.5h-1472q-13 0-22.5 9.5t-9.5 22.5q0 168 147 284 193 152 401 317 6 5 35 29.5t46 37.5 44.5 31.5 50.5 27.5 43 9h2q20 0 43-9t50.5-27.5 44.5-31.5 46-37.5 35-29.5q208-165 401-317 54-43 100.5-115.5t46.5-131.5zm128-37v1088q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1472q66 0 113 47t47 113z"/></svg>
-            <a href="mailto:email@email.com">email@email.com</a>
-          </div>
-          <div class="link-item">
-            <svg  class="icon" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1600 1240q0 27-10 70.5t-21 68.5q-21 50-122 106-94 51-186 51-27 0-53-3.5t-57.5-12.5-47-14.5-55.5-20.5-49-18q-98-35-175-83-127-79-264-216t-216-264q-48-77-83-175-3-9-18-49t-20.5-55.5-14.5-47-12.5-57.5-3.5-53q0-92 51-186 56-101 106-122 25-11 68.5-21t70.5-10q14 0 21 3 18 6 53 76 11 19 30 54t35 63.5 31 53.5q3 4 17.5 25t21.5 35.5 7 28.5q0 20-28.5 50t-62 55-62 53-28.5 46q0 9 5 22.5t8.5 20.5 14 24 11.5 19q76 137 174 235t235 174q2 1 19 11.5t24 14 20.5 8.5 22.5 5q18 0 46-28.5t53-62 55-62 50-28.5q14 0 28.5 7t35.5 21.5 25 17.5q25 15 53.5 31t63.5 35 54 30q70 35 76 53 3 7 3 21z"/></svg>
-            <a href="tel:123-456-7890">123-456-7890</a>
-          </div>
-        </div> <!-- end links -->
-
-        <p class="reference-details">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, quam. Earum suscipit aliquid eius nostrum iste reprehenderit nesciunt, ratione natus consectetur voluptatum magni, culpa in nihil veniam est quod dolorum sunt facere odio quibusdam corporis adipisci fugiat quasi, consequuntur. Debitis?</p>
-
-        <div class="reference">More references available upon request.</div>
-      </div>
-    </section>
-
-  </div>
-</body>
-</html>
-    `;
+			<div class="rela-block caps greyed">Projects</div>
+            <h3>${title1}</h3>
+            <p class="light mt-1 mb-2" style="font-size:17px;"><span class="mr-2"><i class="fas fa-link"></i></span>${link1}</p>
+            <p class="justified" style="font-size:17px;">${experienceDescription1}</p>
+            
+            <h3>${title2}</h3>
+            <p class="light mt-1 mb-2" style="font-size:17px;"><span class="mr-2"><i class="fas fa-link"></i></span>${link1}</p>
+            <p class="justified" style="font-size:17px;">${experienceDescription2}</p>
+			
+        </div>
+    </div>
+    </body>
+    </html>
+  `;
+  return htmlTemplate;
 };

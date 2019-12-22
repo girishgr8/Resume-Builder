@@ -14,9 +14,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
-import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {MuiPickersUtilsProvider, DatePicker} from '@material-ui/pickers';
 
 const styles = theme => ({
   margin: {
@@ -46,7 +43,7 @@ class Experience extends Component {
           .get ('fetch-pdf', {responseType: 'blob'})
           .then (res => {
             const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
-            saveAs (pdfBlob, 'Resume.pdf');
+            saveAs (pdfBlob, `${this.props.values.firstname}'s Resume.pdf`);
           })
           .catch (err => {
             console.log (err);
@@ -263,7 +260,7 @@ class Experience extends Component {
           </div>
         </CardContent>
         <Container className={classes.margin}>
-          {/* <Row>
+          <Row>
             <Col xs={4} />
             <Col xs={2}>
               <Button
@@ -286,15 +283,7 @@ class Experience extends Component {
               </Button>
             </Col>
             <Col xs={4} />
-          </Row> */}
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.createAndDownloadPDF}
-            endIcon={<GetAppIcon />}
-          >
-            Generate PDF
-          </Button>
+          </Row>
         </Container>
         <p className="text-center text-muted">Page 4</p>
       </Paper>
