@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import AppNavBar from './components/AppNavBar';
 import Resume from './components/Resume';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
