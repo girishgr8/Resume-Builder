@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {TextField, Button, Container, Divider} from '@material-ui/core';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
-import axios from 'axios';
-import {saveAs} from 'file-saver';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import SchoolIcon from '@material-ui/icons/School';
@@ -11,8 +9,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {MuiPickersUtilsProvider, DatePicker} from '@material-ui/pickers';
 
 const styles = theme => ({
   margin: {

@@ -1,7 +1,7 @@
 {
-  "name": "e-commerce",
+  "name": "resume-builder",
   "version": "1.0.0",
-  "description": "E-Commerce Application using MERN stack",
+  "description": "Resume Builder Application using MERN stack",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",

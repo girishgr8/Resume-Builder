@@ -270,7 +270,8 @@ export class Resume extends Component {
             </div>
           </div>
         );
-    }
+      default: return <div/>;
+      }
   }
 }
 

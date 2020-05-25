@@ -11,7 +11,6 @@ import TimelapseIcon from '@material-ui/icons/Timelapse';
 import EventSeatIcon from '@material-ui/icons/EventSeat';
 import BusinessIcon from '@material-ui/icons/Business';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
 
