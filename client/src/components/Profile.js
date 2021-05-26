@@ -30,25 +30,6 @@ class Profile extends Component {
     this.props.nextStep ();
   };
 
-  // createAndDownloadPDF = () => {
-  //   axios
-  //     .post ('/create-pdf', this.props.values)
-  //     .then (() => {
-  //       axios
-  //         .get ('fetch-pdf', {responseType: 'blob'})
-  //         .then (res => {
-  //           const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
-  //           saveAs (pdfBlob, 'Resume.pdf');
-  //         })
-  //         .catch (err => {
-  //           console.log (err);
-  //         });
-  //     })
-  //     .catch (err => {
-  //       console.log (err);
-  //     });
-  // };
-
   render () {
     const {values} = this.props;
     const {classes} = this.props;

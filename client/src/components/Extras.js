@@ -36,7 +36,7 @@ class Experience extends Component {
       .post ('/create-pdf', this.props.values)
       .then (() => {
         axios
-          .get ('fetch-pdf', {responseType: 'blob'})
+          .get ('fetch-pdf', {responseType: 'arraybuffer'})
           .then (res => {
             const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
             saveAs (pdfBlob, `${this.props.values.firstname}'s Resume.pdf`);

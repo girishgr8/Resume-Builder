@@ -1,5 +1,4 @@
 const express = require ('express');
-const mongoose = require ('mongoose');
 const bodyParser = require ('body-parser');
 const pdf = require ('html-pdf');
 const cors = require ('cors');
@@ -27,9 +26,9 @@ app.post ('/create-pdf', (req, res) => {
 
 // GET route -> send generated PDF to client...
 app.get ('/fetch-pdf', (req, res) => {
-  res.sendFile (`${__dirname}/Resume.pdf`);
+  const file = `${__dirname}/Resume.pdf`;
+  res.download(file);  
 });
 
-
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 app.listen (port, () => console.log (`Server started on port ${port}`));
