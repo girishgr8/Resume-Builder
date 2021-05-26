@@ -1,11 +1,12 @@
 # Resume Builder Application
 
-![Made-With-React](https://img.shields.io/badge/Made_with-React-informational?style=for-the-badge&logo=react)  ![Made-With-NodeJS](https://img.shields.io/badge/Made_with-NodeJS-informational?style=for-the-badge&logo=javascript) ![Made-With-Material_UI](https://img.shields.io/badge/Made_with-Material_UI-informational?style=for-the-badge&logo=material-ui)
+![Made-With-React](https://img.shields.io/badge/Made_with-React-informational?style=for-the-badge&logo=react) ![Made-With-NodeJS](https://img.shields.io/badge/Made_with-NodeJS-informational?style=for-the-badge&logo=javascript) ![Made-With-Material_UI](https://img.shields.io/badge/Made_with-Material_UI-informational?style=for-the-badge&logo=material-ui)
 
 1. **React** for Frontend and **Express** as Middleware.
 2. **Material UI** and **React-Bootstrap** for styling.
 
 ## Quick Start
+
 Clone the repository and do following:
 
 ```bash
@@ -24,8 +25,9 @@ npm run server
 # Run the React client only
 npm run client
 
-# Server runs on http://localhost:4000 and client on http://localhost:3000
+# Server runs on http://localhost:5000 and client on http://localhost:3000
 ```
 
 ## Demo :
-![Demo](https://github.com/girishgr8/Resume-Builder/blob/master/demo/demo.gif)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JkcP06CYVpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

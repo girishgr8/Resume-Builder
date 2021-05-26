@@ -1,66 +1,66 @@
-module.exports = values => {
-  const {
-    // Profile-Information
-    firstname,
-    lastname,
-    email,
-    phone,
-    website,
-    github,
-    linkedin,
-    twitter,
-    facebook,
-    instagram,
+module.exports = (values) => {
+	const {
+		// Profile-Information
+		firstname,
+		lastname,
+		email,
+		phone,
+		website,
+		github,
+		linkedin,
+		twitter,
+		facebook,
+		instagram,
 
-    // Education Information
-    college,
-    fromyear1,
-    toyear1,
-    qualification1,
-    description1,
-    school,
-    fromyear2,
-    toyear2,
-    qualification2,
-    description2,
+		// Education Information
+		college,
+		fromyear1,
+		toyear1,
+		qualification1,
+		description1,
+		school,
+		fromyear2,
+		toyear2,
+		qualification2,
+		description2,
 
-    // Project Information...
-    title1,
-    link1,
-    projectDescription1,
-    title2,
-    link2,
-    projectDescription2,
-    title3,
-    link3,
-    projectDescription3,
+		// Project Information...
+		title1,
+		link1,
+		projectDescription1,
+		title2,
+		link2,
+		projectDescription2,
+		title3,
+		link3,
+		projectDescription3,
 
-    // Experience Information
-    institute1,
-    position1,
-    duration1,
-    experienceDescription1,
-    institute2,
-    position2,
-    duration2,
-    experienceDescription2,
+		// Experience Information
+		institute1,
+		position1,
+		duration1,
+		experienceDescription1,
+		institute2,
+		position2,
+		duration2,
+		experienceDescription2,
 
-    // Extra Information
-    skill1,
-    skill2,
-    skill3,
-    skill4,
-    skill5,
-    skill6,
-    interest1,
-    interest2,
-    interest3,
-    interest4,
-    interest5,
-    interest6,
-  } = values;
-  
-  let htmlTemplate = `
+		// Extra Information
+		skill1,
+		skill2,
+		skill3,
+		skill4,
+		skill5,
+		skill6,
+		interest1,
+		interest2,
+		interest3,
+		interest4,
+		interest5,
+		interest6,
+	} = values;
+
+	let htmlTemplate = `
   <!DOCTYPE html>
     <html>
     <head>
@@ -318,7 +318,7 @@ module.exports = values => {
 	</style>
     </head>
 	<body>
-	<script src="https://kit.fontawesome.com/08e4ab6b32.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -343,35 +343,35 @@ module.exports = values => {
 			<p class="mb-1"><span style="padding-right:10px;"><i class="fas fa-envelope"></i></span>${email}</p>
 			<p class="mb-1"><span style="padding-right:10px;"><i class="fas fa-phone-square-alt"></i></span>${phone}</p>
 			`;
-  if (skill1 != '' || skill1 != null)
-    htmlTemplate += `<p class="rela-block caps side-header">Skills</p>
+	if (skill1 != "" || skill1 != null)
+		htmlTemplate += `<p class="rela-block caps side-header">Skills</p>
 				<p class="rela-block list-thing">${skill1}</p>`;
-  if (skill2 != '' || skill2 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${skill2}</p>`;
-  if (skill3 != '' || skill3 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${skill3}</p>`;
-  if (skill4 != '' || skill4 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${skill4}</p>`;
-  if (skill5 != '' || skill5 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${skill5}</p>`;
-  if (skill6 != '' || skill6 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${skill6}</p>`;
+	if (skill2 != "" || skill2 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${skill2}</p>`;
+	if (skill3 != "" || skill3 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${skill3}</p>`;
+	if (skill4 != "" || skill4 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${skill4}</p>`;
+	if (skill5 != "" || skill5 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${skill5}</p>`;
+	if (skill6 != "" || skill6 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${skill6}</p>`;
 
-  if (interest1 != '' || interest1 != null)
-    htmlTemplate += `<p class="rela-block caps side-header">Interests</p>
+	if (interest1 != "" || interest1 != null)
+		htmlTemplate += `<p class="rela-block caps side-header">Interests</p>
 				<p class="rela-block list-thing">${interest1}</p>`;
-  if (interest2 != '' || interest2 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${interest2}</p>`;
-  if (interest3 != '' || interest3 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${interest3}</p>`;
-  if (interest4 != '' || interest4 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${interest4}</p>`;
-  if (interest6 != '' || interest6 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${interest5}</p>`;
-  if (interest6 != '' || interest6 != null)
-    htmlTemplate += `<p class="rela-block list-thing">${interest6}</p>`;
+	if (interest2 != "" || interest2 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${interest2}</p>`;
+	if (interest3 != "" || interest3 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${interest3}</p>`;
+	if (interest4 != "" || interest4 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${interest4}</p>`;
+	if (interest6 != "" || interest6 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${interest5}</p>`;
+	if (interest6 != "" || interest6 != null)
+		htmlTemplate += `<p class="rela-block list-thing">${interest6}</p>`;
 
-  htmlTemplate += `
+	htmlTemplate += `
   			</div>
 			<div class="rela-block content-container">
 			<!--
@@ -420,5 +420,5 @@ module.exports = values => {
     </body>
     </html>
   `;
-  return htmlTemplate;
+	return htmlTemplate;
 };
