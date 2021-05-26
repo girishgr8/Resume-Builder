@@ -30,4 +30,4 @@ npm run client
 
 ## Demo :
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JkcP06CYVpc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Click [this](https://youtu.be/JkcP06CYVpc) link to see the demo.
