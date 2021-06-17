@@ -10,6 +10,7 @@ const pdfTemplate = require("./documents");
 const options = {
 	height: "42cm",
 	width: "29.7cm",
+	timeout: "6000",
 };
 
 app.use(cors());

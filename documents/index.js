@@ -332,7 +332,7 @@ module.exports = (values) => {
                     <svg viewbox="0 0 80 80" class="rela-block logo-svg">
                         <path d="M 10 10 L 52 10 L 72 30 L 72 70 L 30 70 L 10 50 Z" stroke-width="2.5" fill="none"/>
                     </svg>
-                    <p class="logo-text">GT</p>
+                    <p class="logo-text">${firstname[0]}${lastname[0]}</p>
                 </div>
 			</div>
 			<!--
