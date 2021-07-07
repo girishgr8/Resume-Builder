@@ -17,7 +17,7 @@
 		"concurrently": "^5.0.1",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
-		"html-pdf": "^2.2.0"
+		"html-pdf": "^3.0.1"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.2"
