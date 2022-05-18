@@ -12,9 +12,9 @@
 		"bootstrap": "^4.6.0",
 		"cra-template": "1.2.0",
 		"file-saver": "^2.0.5",
-		"react": "^18.1.0",
+		"react": "^17.0.0",
 		"react-bootstrap": "^1.6.0",
-		"react-dom": "^18.1.0",
+		"react-dom": "^17.0.0",
 		"react-scripts": "^5.0.1",
 		"reactstrap": "^8.9.0"
 	},
