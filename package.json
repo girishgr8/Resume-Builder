@@ -9,7 +9,6 @@
 		"server": "nodemon server.js",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"prod": "concurrently \"npm run start\" \"npm run client\"",
 		"heroku-postbuild": "cd client && npm install && npm run build"
 	},
 	"author": "Girish Thatte",
@@ -22,5 +21,9 @@
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.16"
+	},
+	"engines": {
+		"npm": ">=7.0.0",
+		"node": "16.15.0"
 	}
 }
