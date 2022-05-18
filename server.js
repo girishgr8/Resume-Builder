@@ -36,6 +36,7 @@ app.post("/create-pdf", (req, res) => {
 app.get("/fetch-pdf", (req, res) => {
 	const file = path.join(__dirname, `${__dirname}/Resume.pdf`);
 	console.log(file);
+	console.log("show");
 	res.download(file);
 });
 
