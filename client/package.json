@@ -15,7 +15,7 @@
     "react": "^18.1.0",
     "react-bootstrap": "^1.6.0",
     "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "reactstrap": "^8.9.0"
   },
   "proxy": "http://localhost:5000",
