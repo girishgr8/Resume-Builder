@@ -21,7 +21,7 @@
   "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "if-node-version '>= 17' && react-scripts --openssl-legacy-provider build || react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
