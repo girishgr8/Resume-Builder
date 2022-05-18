@@ -16,7 +16,11 @@ const options = {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(__dirname, "./client/public")));
+
+app.get("*", (req, res) => {
+	res.sendFile(path.join(publicPath, "index.html"));
+});
 
 // POST route for PDF generation....
 app.post("/create-pdf", (req, res) => {
