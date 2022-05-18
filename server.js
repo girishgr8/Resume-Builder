@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname + "/client/build", "index.html"));
+	res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
 // POST route for PDF generation....
@@ -34,7 +34,7 @@ app.post("/create-pdf", (req, res) => {
 
 // GET route -> send generated PDF to client...
 app.get("/fetch-pdf", (req, res) => {
-	const file = `${__dirname}/Resume.pdf`;
+	const file = path.join(__dirname, `${__dirname}/Resume.pdf`);
 	res.download(file);
 });
 
