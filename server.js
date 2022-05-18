@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const pdf = require("html-pdf");
-const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -13,9 +13,10 @@ const options = {
 	timeout: "6000",
 };
 
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 // POST route for PDF generation....
 app.post("/create-pdf", (req, res) => {
