@@ -35,6 +35,7 @@ app.post("/create-pdf", (req, res) => {
 // GET route -> send generated PDF to client...
 app.get("/fetch-pdf", (req, res) => {
 	const file = path.join(__dirname, `${__dirname}/Resume.pdf`);
+	console.log(file);
 	res.download(file);
 });
 
