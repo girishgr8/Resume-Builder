@@ -1,38 +1,94 @@
-import React, {Component} from 'react';
-import {TextField, Button, Container} from '@material-ui/core';
-import {Card, CardHeader, CardContent} from '@material-ui/core';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import EmailIcon from '@material-ui/icons/Email';
-import PhoneIcon from '@material-ui/icons/Phone';
-import LanguageIcon from '@material-ui/icons/Language';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import {Row, Col} from 'react-bootstrap';
-import {Paper, withStyles, Grid} from '@material-ui/core';
+import React, { Component } from "react";
+import { TextField, Button, Container } from "@material-ui/core";
+import { Card, CardHeader, CardContent } from "@material-ui/core";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import EmailIcon from "@material-ui/icons/Email";
+import PhoneIcon from "@material-ui/icons/Phone";
+import LanguageIcon from "@material-ui/icons/Language";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { Row, Col } from "react-bootstrap";
+import { Paper, withStyles, Grid } from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import MuiAlert from '@mui/material/Alert';
 
-const styles = theme => ({
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
+const styles = (theme) => ({
   margin: {
-    margin: theme.spacing.unit * 1,
+    margin: theme.spacing(1),
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 
 class Profile extends Component {
-  continue = e => {
-    e.preventDefault ();
-    this.props.nextStep ();
+  state = {
+    open: false,
   };
 
-  render () {
-    const {values} = this.props;
-    const {classes} = this.props;
+  continue = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
+
+  save = (e) => {
+    const promise = this.props.save();
+    promise
+      .then((res) => {
+        if (res.status === 200) {
+          this.setState((prevState) => ({
+            open: true,
+          }));
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  handleClick = () => {
+    this.setState((prevState) => ({
+      open: true,
+    }));
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    this.setState((prevState) => ({
+      open: false,
+    }));
+  };
+
+  action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={this.handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  render() {
+    const { values } = this.props;
+    const { classes } = this.props;
+
     return (
       <Paper className={classes.padding}>
         <Card>
@@ -47,8 +103,8 @@ class Profile extends Component {
                   variant="outlined"
                   name="firstname"
                   label="First Name"
-                  style={{width: '80%'}}
-                  required
+                  style={{ width: "80%" }}
+                  required={true}
                   value={values.firstname}
                   onChange={this.props.handleChange}
                 />
@@ -58,7 +114,7 @@ class Profile extends Component {
                   margin="dense"
                   label="Last Name"
                   variant="outlined"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   name="lastname"
                   required
                   value={values.lastname}
@@ -73,7 +129,7 @@ class Profile extends Component {
                   variant="outlined"
                   name="email"
                   required
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.email}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -92,7 +148,7 @@ class Profile extends Component {
                   label="Phone Number"
                   variant="outlined"
                   name="phone"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.phone}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -111,7 +167,7 @@ class Profile extends Component {
                   label="Your Website"
                   variant="outlined"
                   name="website"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.website}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -129,7 +185,7 @@ class Profile extends Component {
                   label="GitHub"
                   variant="outlined"
                   name="github"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.github}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -147,7 +203,7 @@ class Profile extends Component {
                   label="Linked In"
                   variant="outlined"
                   name="linkedin"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.linkedin}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -165,7 +221,7 @@ class Profile extends Component {
                   label="Twitter"
                   variant="outlined"
                   name="twitter"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.twitter}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -183,7 +239,7 @@ class Profile extends Component {
                   label="Facebook"
                   variant="outlined"
                   name="facebook"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.facebook}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -201,7 +257,7 @@ class Profile extends Component {
                   label="Instagram"
                   variant="outlined"
                   name="instagram"
-                  style={{alignItems: 'left', width: '80%'}}
+                  style={{ alignItems: "left", width: "80%" }}
                   value={values.instagram}
                   onChange={this.props.handleChange}
                   InputProps={{
@@ -241,20 +297,31 @@ class Profile extends Component {
                 <Col lg={3} xs={1} />
               </Row>
             </Container>
-            {/* <Button
-              variant="contained"
-              color="secondary"
-              onClick={this.createAndDownloadPDF}
-              endIcon={<GetAppIcon />}
-            >
-              Generate PDF
-            </Button> */}
           </div>
         </CardContent>
-        <p className="text-center text-muted">Page 1 </p>
+        <p className="text-center text-muted">Page 1</p>
+        <Button variant="contained" color="primary" onClick={this.save}>
+          {" "}
+          Save
+        </Button>
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          // message="Your data has been saved successfully !"
+          action={this.action}
+        >
+          <Alert
+            onClose={this.handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Your data has been saved successfully !
+          </Alert>
+        </Snackbar>
       </Paper>
     );
   }
 }
 
-export default withStyles (styles) (Profile);
+export default withStyles(styles)(Profile);

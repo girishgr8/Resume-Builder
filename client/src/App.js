@@ -1,42 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 import "./App.css";
 import Resume from "./components/Resume";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+export function App() {
+  const [user, setUser] = useState({});
+  const [verified, setVerified] = useState(true);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+  useEffect(() => {
+    async function tokenVerifier() {
+      if (user?.email) {
+        const data = {
+          token: user.token,
+          email: user.email,
+        };
+        await axios
+          .post("/verifyToken", data)
+          .then((res) => {
+            if (res.status === 200) setVerified(true);
+          })
+          .catch((err) => {
+            const errorStatus = err.response.status;
+            if (errorStatus === 401) setVerified(false);
+          });
+      }
+    }
 
-export function App () {
-  const classes = useStyles();
-    return (
-        <div className="App">
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"><MenuIcon /></IconButton>
-                <Typography variant="h6" className={classes.title}>Resume Builder</Typography>
-                <Button color="inherit">Login</Button>
-            </Toolbar>
-        </AppBar>
-        <Resume />
-        </div>
-    );
-  }
+    tokenVerifier(user);
+  }, [user]);
+
+  useEffect(() => {
+    if (!verified) {
+      localStorage.removeItem("user");
+      window.location.replace("/");
+    }
+  }, [verified]);
+
+  useEffect(() => {
+    const theUser = localStorage.getItem("user");
+    if (theUser && !theUser.includes("undefined")) {
+      setUser(JSON.parse(theUser));
+    }
+  }, []);
+
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={user?.email ? <Resume user={user} /> : <Home />}
+          ></Route>
+          <Route
+            exact
+            path="/signup"
+            element={user?.email ? <Resume user={user} /> : <Signup />}
+          ></Route>
+          <Route
+            exact
+            path="/login"
+            element={user?.email ? <Resume user={user} /> : <Login />}
+          ></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
 
 export default App;

@@ -1,38 +1,89 @@
-import React, {Component} from 'react';
-import {TextField, Button, Container, Divider} from '@material-ui/core';
-import {Card, CardHeader, CardContent} from '@material-ui/core';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import SchoolIcon from '@material-ui/icons/School';
-import DateRangeIcon from '@material-ui/icons/DateRange';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import {Row, Col} from 'react-bootstrap';
-import {Paper, withStyles, Grid} from '@material-ui/core';
-import 'date-fns';
+import React, { Component } from "react";
+import { TextField, Button, Container, Divider } from "@material-ui/core";
+import { Card, CardHeader, CardContent } from "@material-ui/core";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import { Row, Col } from "react-bootstrap";
+import { Paper, withStyles, Grid } from "@material-ui/core";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import MuiAlert from '@mui/material/Alert';
 
-const styles = theme => ({
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
+const styles = (theme) => ({
   margin: {
-    margin: theme.spacing.unit * 1.5,
+    margin: theme.spacing(1.5),
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 
-class Profile extends Component {
-  continue = e => {
-    e.preventDefault ();
-    this.props.nextStep ();
+class Education extends Component {
+  state = {
+    open: false,
   };
 
-  back = e => {
-    e.preventDefault ();
-    this.props.prevStep ();
+  continue = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
   };
 
-  render () {
-    const {values} = this.props;
-    const {classes} = this.props;
+  back = (e) => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
+
+  save = (e) => {
+    const promise = this.props.save();
+    promise
+      .then((res) => {
+        if (res.status === 200) {
+          this.setState((prevState) => ({
+            open: true,
+          }));
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  handleClick = () => {
+    this.setState((prevState) => ({
+      open: true,
+    }));
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    this.setState((prevState) => ({
+      open: false,
+    }));
+  };
+
+  action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={this.handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  render() {
+    const { values } = this.props;
+    const { classes } = this.props;
 
     return (
       <Paper className={classes.padding}>
@@ -48,17 +99,10 @@ class Profile extends Component {
                   variant="outlined"
                   name="college"
                   label="College/Unviersity"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   required
                   value={values.college}
                   onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <SchoolIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
               <Grid item md={4} sm={6} xs={12} lg={4}>
@@ -68,17 +112,10 @@ class Profile extends Component {
                   name="fromyear1"
                   label="From Year"
                   type="date"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   required
                   value={values.fromyear1}
                   onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <DateRangeIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
 
@@ -89,17 +126,10 @@ class Profile extends Component {
                   name="toyear1"
                   type="date"
                   label="To Year"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   required
                   value={values.toyear1}
                   onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <DateRangeIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
 
@@ -108,7 +138,7 @@ class Profile extends Component {
                   margin="dense"
                   label="Qualification"
                   variant="outlined"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   name="qualification1"
                   required
                   value={values.qualification1}
@@ -121,7 +151,7 @@ class Profile extends Component {
                   margin="dense"
                   label="Description"
                   variant="outlined"
-                  style={{width: '90%'}}
+                  style={{ width: "90%" }}
                   name="description1"
                   required
                   value={values.description1}
@@ -139,17 +169,10 @@ class Profile extends Component {
                   variant="outlined"
                   name="school"
                   label="School"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   required
                   value={values.school}
                   onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <SchoolIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
               <Grid item md={4} sm={6} xs={12} lg={4}>
@@ -159,43 +182,24 @@ class Profile extends Component {
                   name="fromyear2"
                   label="From Year"
                   type="date"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   required
                   value={values.fromyear2}
                   onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <DateRangeIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
 
               <Grid item md={4} sm={6} xs={12} lg={4}>
-                {/* <CustomDatePicker
-                  name={'toyear2'}
-                  label={'To Year'}
-                  value={values.toyear2}
-                /> */}
                 <TextField
                   margin="dense"
                   variant="outlined"
                   name="toyear2"
                   label="To Year"
                   type="date"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   required
                   value={values.toyear2}
                   onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start">
-                        <DateRangeIcon />
-                      </InputAdornment>
-                    ),
-                  }}
                 />
               </Grid>
 
@@ -204,7 +208,7 @@ class Profile extends Component {
                   margin="dense"
                   label="Qualification"
                   variant="outlined"
-                  style={{width: '80%'}}
+                  style={{ width: "80%" }}
                   name="qualification2"
                   required
                   value={values.qualification2}
@@ -217,7 +221,7 @@ class Profile extends Component {
                   margin="dense"
                   label="Description"
                   variant="outlined"
-                  style={{width: '90%'}}
+                  style={{ width: "90%" }}
                   name="description2"
                   required
                   value={values.description2}
@@ -254,9 +258,27 @@ class Profile extends Component {
           </Row>
         </Container>
         <p className="text-center text-muted">Page 2</p>
+        <Button variant="contained" color="primary" onClick={this.save}>
+          {" "}
+          Save
+        </Button>
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          action={this.action}
+        >
+          <Alert
+            onClose={this.handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Your data has been saved successfully !
+          </Alert>
+        </Snackbar>
       </Paper>
     );
   }
 }
 
-export default withStyles (styles) (Profile);
+export default withStyles(styles)(Education);

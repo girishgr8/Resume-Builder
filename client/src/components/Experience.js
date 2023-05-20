@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {TextField, Button, Container, Divider} from '@material-ui/core';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
-import axios from 'axios';
-import {saveAs} from 'file-saver';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import DescriptionIcon from '@material-ui/icons/Description';
@@ -13,17 +11,30 @@ import BusinessIcon from '@material-ui/icons/Business';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 
 const styles = theme => ({
   margin: {
-    margin: theme.spacing.unit * 1.5,
+    margin: theme.spacing(1.5),
   },
   padding: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
   },
 });
 
 class Experience extends Component {
+  state = {
+    open: false,
+  };
+
   continue = e => {
     e.preventDefault ();
     this.props.nextStep ();
@@ -34,24 +45,47 @@ class Experience extends Component {
     this.props.prevStep ();
   };
 
-  createAndDownloadPDF = () => {
-    axios
-      .post ('/create-pdf', this.props.values)
-      .then (() => {
-        axios
-          .get ('fetch-pdf', {responseType: 'blob'})
-          .then (res => {
-            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
-            saveAs (pdfBlob, `${this.props.values.firstname}'s Resume.pdf`);
-          })
-          .catch (err => {
-            console.log (err);
-          });
+  save = (e) => {
+    const promise = this.props.save();
+    promise
+      .then((res) => {
+        if (res.status === 200) {
+          this.setState((prevState) => ({
+            open: true,
+          }));
+        }
       })
-      .catch (err => {
-        console.log (err);
-      });
+      .catch((err) => console.log(err));
   };
+
+  handleClick = () => {
+    this.setState((prevState) => ({
+      open: true,
+    }));
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    this.setState((prevState) => ({
+      open: false,
+    }));
+  };
+
+  action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={this.handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   render () {
     const {values} = this.props;
@@ -285,6 +319,24 @@ class Experience extends Component {
           </Row>
         </Container>
         <p className="text-center text-muted">Page 4</p>
+        <Button variant="contained" color="primary" onClick={this.save}>
+          {" "}
+          Save
+        </Button>
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          action={this.action}
+        >
+          <Alert
+            onClose={this.handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Your data has been saved successfully !
+          </Alert>
+        </Snackbar>
       </Paper>
     );
   }
