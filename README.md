@@ -5,6 +5,8 @@
 1. **React** for Frontend and **Express** as Middleware.
 2. **Material UI** and **React-Bootstrap** for styling.
 
+## _UPDATE : GOOGLE SIGN-IN & SESSION MANAGEMENT FEATURES ADDED_
+
 ## Quick Start
 
 Clone the repository and do following:
@@ -38,3 +40,12 @@ npm run client
 ## Demo :
 
 Click [this](https://youtu.be/JkcP06CYVpc) link to see the demo.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/girishgr8/Resume-Builder/blob/master/LICENSE) file for details.
+
+## Credits :
+
+Referred to [this](https://www.sitepoint.com/google-auth-react-express/) for setting up Google Sign-in
+
+<h3 align="center"><b>Developed with :heart: by Girish Thatte</b></h1>
