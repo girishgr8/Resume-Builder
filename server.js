@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: __dirname + "/.env" });
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -7,6 +7,10 @@ const cors = require("cors");
 const { MongoClient } = require("mongodb");
 const { OAuth2Client } = require("google-auth-library");
 const jwt = require("jsonwebtoken");
+
+const pdfTemplate = require("./documents");
+
+const app = express();
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const URI = process.env.MONGO_URI;
@@ -24,18 +28,6 @@ try {
   console.error(e);
 }
 
-const app = express();
-
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
-
-const pdfTemplate = require("./documents");
-
 const options = {
   height: "42cm",
   width: "35.7cm",
@@ -43,8 +35,16 @@ const options = {
 };
 
 app.use(cors());
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "/public")));
 
 const verifyGoogleToken = async (token) => {
   try {
@@ -61,7 +61,10 @@ const verifyGoogleToken = async (token) => {
 app.post("/verifyToken", (req, res) => {
   const token = req.body.token;
   jwt.verify(token, process.env.GOOGLE_CLIENT_SECRET, (err, decodedToken) => {
-    if (err && (err.name === "TokenExpiredError" || err.name === "JsonWebTokenError")) {
+    if (
+      err &&
+      (err.name === "TokenExpiredError" || err.name === "JsonWebTokenError")
+    ) {
       res.status(401).json({
         message: err,
       });
@@ -240,11 +243,15 @@ app.post("/create-pdf", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello from 'Resume Builder' Web App");
+});
+
 // GET route -> send generated PDF to client...
 app.get("/fetch-pdf", (req, res) => {
   const file = `${__dirname}/Resume.pdf`;
   res.download(file);
 });
 
-const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`Server started on port ${port}`));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
