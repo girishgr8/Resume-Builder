@@ -2,6 +2,8 @@
 
 ![Made-With-React](https://img.shields.io/badge/Made_with-React-informational?style=for-the-badge&logo=react) ![Made-With-NodeJS](https://img.shields.io/badge/Made_with-NodeJS-informational?style=for-the-badge&logo=javascript) ![Made-With-Material_UI](https://img.shields.io/badge/Made_with-Material_UI-informational?style=for-the-badge&logo=material-ui)
 
+## [TRY LIVE ](https://resume-builder-7xhm.onrender.com/ "Live Website")
+
 1. **React** for Frontend and **Express** as Middleware.
 2. **Material UI** and **React-Bootstrap** for styling.
 
@@ -36,12 +38,12 @@ npm run client
   <img src="./proxy-change.png" width=100%/>
 </div>
 
-
 ## Demo :
 
 Click [this](https://youtu.be/JkcP06CYVpc) link to see the demo.
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/girishgr8/Resume-Builder/blob/master/LICENSE) file for details.
 
 ## Credits :
