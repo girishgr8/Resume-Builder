@@ -4,7 +4,7 @@
   "description": "Resume Builder Application using ReactJS(frontend) and NodeJS(backend)",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
+    "client-install": "npm install --force --prefix client",
     "build": "npm install",
     "start": "node server.js",
     "server": "nodemon server.js",

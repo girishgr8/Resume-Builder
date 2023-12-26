@@ -28,7 +28,7 @@
     "react-scripts": "5.0.1",
     "reactstrap": "^8.9.0"
   },
-  "proxy": "https://resume-builder-7xhm.onrender.com/",
+  "proxy": "http://localhost:4000/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
