@@ -33,6 +33,11 @@ const options = {
   height: "42cm",
   width: "35.7cm",
   timeout: "6000",
+  childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
 };
 
 app.use(cors());
