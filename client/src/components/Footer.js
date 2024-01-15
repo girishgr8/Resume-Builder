@@ -19,7 +19,10 @@ const Footer = () => {
             src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png"
           />
         </g-emoji>{" "}
-        by <a href="https://girishgr8.github.io">Girish Thatte</a>
+        by{" "}
+        <a href="https://girishgr8.github.io" target="_blank">
+          Girish Thatte
+        </a>
       </p>
     </div>
   );
