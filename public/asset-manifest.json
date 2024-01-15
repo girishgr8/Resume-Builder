@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4b256ffb.css",
-    "main.js": "/static/js/main.dde2b9ad.js",
+    "main.css": "/static/css/main.02a9b0da.css",
+    "main.js": "/static/js/main.c93bd2e8.js",
     "static/media/carousel2.png": "/static/media/carousel2.c981b4eefe83e3e37ccc.png",
     "static/media/carousel4.png": "/static/media/carousel4.6df59cd94f2c585308da.png",
     "static/media/carousel3.png": "/static/media/carousel3.121490630ef8f4e47591.png",
@@ -10,11 +10,11 @@
     "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/index.html",
-    "main.4b256ffb.css.map": "/static/css/main.4b256ffb.css.map",
-    "main.dde2b9ad.js.map": "/static/js/main.dde2b9ad.js.map"
+    "main.02a9b0da.css.map": "/static/css/main.02a9b0da.css.map",
+    "main.c93bd2e8.js.map": "/static/js/main.c93bd2e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b256ffb.css",
-    "static/js/main.dde2b9ad.js"
+    "static/css/main.02a9b0da.css",
+    "static/js/main.c93bd2e8.js"
   ]
 }
