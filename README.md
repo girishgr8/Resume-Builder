@@ -40,7 +40,9 @@ npm run client
 
 ## Demo :
 
-Click [this](https://youtu.be/JkcP06CYVpc) link to see the demo.
+Click on the image below to see the demo.
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/JkcP06CYVpc/0.jpg)](https://www.youtube.com/watch?v=JkcP06CYVpc)
 
 ## License
 
