@@ -6,7 +6,6 @@ const useFetch = (url) => {
 
   const handleGoogle = async (response) => {
     setLoading(true);
-    console.log(url);
     fetch(url, {
       method: "POST",
       headers: {

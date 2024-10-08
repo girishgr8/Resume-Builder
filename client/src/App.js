@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
 
 export function App() {
   const [user, setUser] = useState({});
@@ -71,6 +72,9 @@ export function App() {
           ></Route>
         </Routes>
       </BrowserRouter>
+      <br></br>
+      <br></br>
+      <Footer></Footer>
     </div>
   );
 }

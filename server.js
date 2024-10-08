@@ -32,7 +32,7 @@ try {
 const options = {
   height: "42cm",
   width: "35.7cm",
-  timeout: "6000",
+  timeout: "60000",
   childProcessOptions: {
     env: {
       OPENSSL_CONF: '/dev/null',
