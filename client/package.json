@@ -14,7 +14,7 @@
     "@mui/material": "^5.13.1",
     "@mui/styles": "^5.13.1",
     "@react-oauth/google": "^0.10.0",
-    "axios": "^0.27.2",
+    "axios": "^0.28.0",
     "bootstrap": "^4.6.0",
     "cra-template": "1.2.0",
     "file-saver": "^2.0.5",
